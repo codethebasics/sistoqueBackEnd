@@ -14,6 +14,10 @@ module.exports = {
 };
 
 async function authenticate({ login, senha }) {
+
+    console.log(login);
+    console.log(senha);
+
     const user = await db.User.scope('withHash').findOne({ where: { login } });
 
     if (!user || !(await bcrypt.compare(senha, user.hash)))
